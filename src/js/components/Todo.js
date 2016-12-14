@@ -2,8 +2,15 @@ import React from "react";
 
 export default class Todo extends React.Component {
 	render(){
+		const todoItems = {
+			fontSize:'37pt',
+			color: '#929292',
+			fontWeight:'100',
+			fontFamily:"Source Sans Pro, Calibri, Candara, Arial, sans-serif",
+			listStyleType: 'none'
+		}
 		return(
-			<ul><input type="checkbox" defaultChecked={(this.props.complete == "true") ? "true" : ""} />{this.props.todoValue}</ul>
+			<li style={todoItems}><input type="checkbox" style={{display:'none'}} defaultChecked={(this.props.complete == "true") ? "true" : ""} />{this.props.todoValue}</li>
 		);
 	}
 }
