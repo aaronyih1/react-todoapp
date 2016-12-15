@@ -6,23 +6,13 @@ class TodoStore extends EventEmitter {
 	constructor() {
 		super();
 		this.todos = [
-	      {
-	        id: 3948111923,
-	        text: "walk the catya",
-	        complete: "true",
-	      },
-	      {
-	        id: 9835728653,
-	        text: "walk the doge",
-	        complete: "false",
-	      }
 	    ];
 	}
 
 	createTodo(text) {
 		const id = Date.now();
 
-		this.todos.push({
+		this.todos.unshift({
 			id,
 			text,
 			complete: false,
@@ -34,6 +24,9 @@ class TodoStore extends EventEmitter {
 		if(complete == true){
 
 		}
+	}
+	clearInput(){
+		this
 	}
 
 	getAll() {

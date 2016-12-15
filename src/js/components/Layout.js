@@ -6,7 +6,8 @@ export default class Layout extends React.Component {
   	const titleStyle= {
   		textTransform: 'uppercase',
   		color: '#D8D8D8',
-  		fontSize:'37pt'
+  		fontSize:'37pt',
+      paddingLeft: '25px'
   	}
     return (
       <div>
