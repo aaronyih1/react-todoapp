@@ -30,11 +30,30 @@ export default class Todolist extends React.Component {
 	createTodo(e){
 		if(e.key === 'Enter'){
 			TodoActions.createTodo(this.state.todo);
+			this.state.todo = "";
 			e.target.value = "";
 		}
 	}
 	render(){
 		const {todos} = this.state;
+		const timelineTop = {
+			height: '50px',
+			position: 'absolute',
+			left: '30px',
+			top: '115px',
+			borderLeft: 'solid #D8D8D8 3px'
+		}
+		const circle = {
+			width: '15px',
+			height: '15px',
+			borderRadius: '7.5px',
+			backgroundColor: 'white',
+			border: '#D8D8D8 solid 3px',
+			display: 'inline-block',
+			position: 'relative',
+			left: '-9px',
+			top: '-1px'
+		}
 		const inputStyle = {
 			backgroundColor: 'red !important',
 			width: '95%',
@@ -42,29 +61,34 @@ export default class Todolist extends React.Component {
 			lineHeight: '67pt !important',
 			fontSize: '37pt',
 			backgroundColor: 'transparent',
-			color: '#929292',
+			color: '#585858',
 			border: 'none',
 			boxShadow: 'none',
 			fontWeight: '100',
 			padding: '0',
-			paddingLeft: '30px'
+			marginLeft: '60px'
 		};
 		const ulStyle= {
 			padding: '0',
+			marginLeft: '30px',
 			paddingLeft: '30px',
-			width: '95%'
+			width: '95%',
+			borderLeft: 'solid #D8D8D8 3px'
 		}
 		const TodoComponents = todos.map((todo) => {
-		  return <Todo key={todo.id} todoValue={todo.text} complete={todo.complete} />;
+		  return <Todo key={todo.id} todoValue={todo.text} complete={todo.complete} color={todo.color} type = {todo.type} />;
 		});
 		return(
 			<div>
 				<input className="form-control" style={inputStyle} type="text" onChange={this.handleChange.bind(this)} onKeyPress={this.createTodo.bind(this)} autoFocus/>
-					<ul style={ulStyle}>
-						<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
-							{TodoComponents}
-						</ReactCSSTransitionGroup>
-					</ul>
+				<div style={timelineTop}>
+					<div style={circle}></div>
+				</div>
+				<ul style={ulStyle}>
+					<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+						{TodoComponents}
+					</ReactCSSTransitionGroup>
+				</ul>
 			</div>
 		);
 	}

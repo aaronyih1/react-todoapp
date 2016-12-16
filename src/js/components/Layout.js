@@ -7,7 +7,7 @@ export default class Layout extends React.Component {
   		textTransform: 'uppercase',
   		color: '#D8D8D8',
   		fontSize:'37pt',
-      paddingLeft: '25px'
+      paddingLeft: '55px'
   	}
     return (
       <div>
