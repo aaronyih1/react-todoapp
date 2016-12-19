@@ -1,0 +1,29 @@
+{
+	"type": "Collection",
+	"properties": {
+		"text": {
+			"name": "text",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "text",
+			"order": 0
+		},
+		"type": {
+			"name": "type",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "type",
+			"order": 1
+		},
+		"coreValue": {
+			"name": "coreValue",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "coreValue",
+			"order": 2
+		}
+	}
+}

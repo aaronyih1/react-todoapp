@@ -1,8 +1,22 @@
 import React from "react";
 
 export default class Todo extends React.Component {
-	sortCirclePos(type){
-		const color = this.props.color;
+	sortCircle(type, coreValue){
+		const colorList = ['#D8495B', '#5C92D1', '#2CAF38'];
+		function sortColor(coreValue){
+			switch(coreValue){
+				case "self-fulfillment":
+					return("#D8495B");
+				case "health":
+					return("#5C92D1");
+				case "career":
+					return("#2CAF38");
+				default :
+					return("black");
+			};
+
+		};
+		const color = sortColor(coreValue);
 		const action = {
 			width: '15px',
 			height: '15px',
@@ -81,11 +95,10 @@ export default class Todo extends React.Component {
 			default:
 				return(action);
 		};
-	console.log(this.sortStyles(this.props.type));
 	};
 	render(){ 
 		return(
-			<li style={this.sortTextStyles(this.props.type)} type={this.props.type}><div style={this.sortCirclePos(this.props.type)}></div>{this.props.todoValue}</li>
+			<li style={this.sortTextStyles(this.props.type)} type={this.props.type} coreValue={this.props.coreValue}><div style={this.sortCircle(this.props.type, this.props.coreValue)}></div>{this.props.todoValue}</li>
 		);
 	}
 }

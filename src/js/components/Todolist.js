@@ -12,8 +12,8 @@ export default class Todolist extends React.Component {
 	    todos: TodoStore.getAll(),
 	  };
 	}
-
 	componentWillMount() {
+		TodoActions.returnTodos();
 		TodoStore.on("change", () => {
 			this.setState({
 				todos: TodoStore.getAll(),
@@ -27,9 +27,16 @@ export default class Todolist extends React.Component {
 		const todo = e.target.value;
 		this.changeTodo(todo);
 	}
+	updateTodos(action){
+		TodoActions.updateTodos(action);
+	}
+	pushTodo(todo){
+		TodoActions.pushTodo(todo);
+	}
 	createTodo(e){
 		if(e.key === 'Enter'){
-			TodoActions.createTodo(this.state.todo);
+			TodoActions.pushTodo(e.target.value);
+			TodoActions.returnTodos();
 			this.state.todo = "";
 			e.target.value = "";
 		}
@@ -38,10 +45,10 @@ export default class Todolist extends React.Component {
 		const {todos} = this.state;
 		const timelineTop = {
 			height: '50px',
-			position: 'absolute',
-			left: '30px',
 			top: '115px',
-			borderLeft: 'solid #D8D8D8 3px'
+			borderLeft: 'solid #D8D8D8 3px',
+			marginLeft: '30px',
+			marginTop: '30px',
 		}
 		const circle = {
 			width: '15px',
@@ -55,7 +62,6 @@ export default class Todolist extends React.Component {
 			top: '-1px'
 		}
 		const inputStyle = {
-			backgroundColor: 'red !important',
 			width: '95%',
 			height: '67px',
 			lineHeight: '67pt !important',
@@ -66,7 +72,10 @@ export default class Todolist extends React.Component {
 			boxShadow: 'none',
 			fontWeight: '100',
 			padding: '0',
-			marginLeft: '60px'
+			marginLeft: '60px',	
+			position: 'relative',
+			top: '-40px',
+			left: '-10px'
 		};
 		const ulStyle= {
 			padding: '0',
@@ -76,13 +85,13 @@ export default class Todolist extends React.Component {
 			borderLeft: 'solid #D8D8D8 3px'
 		}
 		const TodoComponents = todos.map((todo) => {
-		  return <Todo key={todo.id} todoValue={todo.text} complete={todo.complete} color={todo.color} type = {todo.type} />;
+		  return <Todo key={todo.id} todoValue={todo.text} complete={todo.complete} type = {todo.type} coreValue={todo.coreValue}/>;
 		});
 		return(
 			<div>
-				<input className="form-control" style={inputStyle} type="text" onChange={this.handleChange.bind(this)} onKeyPress={this.createTodo.bind(this)} autoFocus/>
 				<div style={timelineTop}>
 					<div style={circle}></div>
+					<input className="form-control" style={inputStyle} type="text" onChange={this.handleChange.bind(this)} onKeyPress={this.createTodo.bind(this)} autoFocus/>
 				</div>
 				<ul style={ulStyle}>
 					<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
