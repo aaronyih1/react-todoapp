@@ -7,11 +7,7 @@ export function returnTodos() {
 	  .then(function (response) {
 	  	updateTodos(response.data);
 	  });
-	dispatcher.dispatch({
-		type: "Return_TODO"
-	});
 };
-
 
 export function createTodo(text){
 	dispatcher.dispatch({
@@ -19,25 +15,18 @@ export function createTodo(text){
 		text,
 	});
 }
-export function deleteTodo(id){
-	dispatcher.dispatch({
-		type: "DELETE_TODO",
-		id,
-	});
-}
+// export function deleteTodo(id){
+// 	dispatcher.dispatch({
+// 		type: "DELETE_TODO",
+// 		id,
+// 	});
+// }
 export function updateTodos(data) {
 	dispatcher.dispatch({
 		type: "UPDATE_TODOS",
 		todos: data,
 	});
 }
-// export function reloadTodos() {
-// 	dispatcher.dispatch({type: "FETCH_TODOS"});
-// 	dispatcher.dispatch({
-// 		type: "RECEIVE_TODOS", 
-// 		todos: hello ,
-// 	});
-// }
 
 export function pushTodo(todo){
 	axios.post('http://localhost:2403/todos', {

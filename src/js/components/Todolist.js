@@ -30,9 +30,6 @@ export default class Todolist extends React.Component {
 	updateTodos(action){
 		TodoActions.updateTodos(action);
 	}
-	pushTodo(todo){
-		TodoActions.pushTodo(todo);
-	}
 	createTodo(e){
 		if(e.key === 'Enter'){
 			TodoActions.pushTodo(e.target.value);
